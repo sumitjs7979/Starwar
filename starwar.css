@@ -1,0 +1,85 @@
+
+      #search {
+         margin-top: -650px;
+    width: 100%;
+    display: flex;
+     background: transparent;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+      }
+      #logo{
+          text-align: center;
+          margin-bottom: 35px;
+          background: #110b0b;
+
+      }
+      #logo img{
+          width: 300px;
+      }
+      
+      #searchbox {
+    width: 400px;
+    border-radius: 20px;
+    outline-style: none;
+    font-size: 16px;
+    background: #2d2f30;
+    color: #f2f2f2;
+    align-items: center;
+}
+#big_input{
+    width: 100%;
+    display: flex;
+    gap: auto;
+}
+     
+     #inputbox{
+        padding: 10px 15px;
+        width: 80%;
+        height: 100%;
+    border-radius: 20px;
+    align-items: center;
+    justify-content: space-between;
+    border-style: none;
+    background: #2d2f30;
+}
+#query{
+    width: 100%;
+    outline-style: none;
+     height: 55px; 
+    border-style: none;
+    background: #2d2f30;
+    color: #f2f2f2;
+    font-size: 16px;
+}
+#mainsuggest{
+    background: #2d2f30;
+    max-height: 300px;
+    width: 100%;
+    overflow-y: auto;
+   
+    
+}
+#mainsuggest{
+    display: grid;
+    grid-template-columns: auto;
+    grid-gap: 0px;
+}
+#big_div{
+    display: flex;
+    flex-direction: row;
+    gap: 230px;
+    margin: 0px;
+    padding: 0px;
+}
+#suggestiondiv{
+    margin: 10px;
+}
+#suggestiondiv p{
+    margin: 0;
+     display: flex;
+    cursor: pointer;
+     height: 55px;
+    flex-direction: column;
+    padding: 2px;
+} 

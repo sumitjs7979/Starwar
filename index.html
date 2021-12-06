@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="starwar.css">
+    <title>Document</title>
+    
+     
+  
+</head>
+<body>
+    <img src="imge.gif" style="height: 100%; width: 100%;">
+  
+  <div id="search">
+      <div id="logo">
+   <img src="https://preply.com/wp-content/uploads/2020/05/694px-Star_Wars_Logo.svg_.png">
+
+</div>
+<div id="searchbox">
+    <div id="big_input">
+    <div id="inputbox">
+        <input placeholder="search characters" oninput="debounce(main,1000)" id="query">
+    </div>
+        <div id="search_icon">
+<img src="https://cdn3.vectorstock.com/i/1000x1000/78/57/search-icon-yellow-circle-frame-background-vector-20757857.jpg" alt="search" width="35px" style="background-color: rgb(255, 235, 0); padding: 10px; margin-left: 10px; border-radius: 100%;">
+</div>
+</div>
+    
+<div id="mainsuggest">
+
+</div>
+</div>
+</div>
+
+
+
+    <script>
+      let mainsuggest=document.getElementById('mainsuggest')
+     
+       var timerId;
+      async function searchmovies(name){
+  let res=await fetch(`https://swapi.dev/api/people/?search=${name}`);
+  let data= await res.json();
+//   console.log(data.results);
+   return data.results;
+      }
+
+
+
+      function appendmovies(m){
+      
+        mainsuggest.innerHTML=null;
+        m.forEach(({name,birth_year,gender})=> {
+        
+            let big_suggestdiv=document.createElement('div');
+            let suggest_div=document.createElement('div');
+        let p_genderdiv=document.createElement('div');
+      
+
+        suggest_div.setAttribute('id','suggestiondiv');
+big_suggestdiv.setAttribute('id','big_div');
+         suggest_div.innerHTML=null;
+         p_genderdiv.innerHTML=null;
+
+          let p_name=document.createElement('p');
+        p_name.innerText= name;
+        p_name.style.color= "yellow";
+         
+          let p_birth=document.createElement('p');
+        p_birth.innerText= birth_year;
+        suggest_div.append(p_name,p_birth);
+
+        let p_gender=document.createElement('p');
+        p_gender.innerText= gender;
+       
+        p_genderdiv.append(p_gender);
+       big_suggestdiv.append(suggest_div,p_genderdiv);
+       mainsuggest.append(big_suggestdiv);
+ 
+      });
+       
+      }
+      async function main(){
+        let name=document.getElementById('query').value;
+        let char= await searchmovies(name);
+        if(char===undefined){
+          return false;
+        }
+         console.log(char);
+        appendmovies(char);
+    
+    }
+      
+
+
+      function debounce(func,delay){
+        let name=document.getElementById('query').value;
+        if(name.length<3){
+          return false;
+        }
+  if(timerId){
+    clearTimeout(timerId);
+  }
+        timerId=setTimeout(()=>{
+          func()
+        },delay);
+      }
+
+</script>
+</body>
+</html>
